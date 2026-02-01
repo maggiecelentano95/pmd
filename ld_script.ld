@@ -7,7 +7,7 @@ MEMORY
 {
     EWRAM (rwx) : ORIGIN = 0x2000000, LENGTH = 256K
     IWRAM (rwx) : ORIGIN = 0x3000000, LENGTH = 32K
-    ROM    (rx) : ORIGIN = 0x8000000, LENGTH = 32M
+    ROM    (rx) : ORIGIN = 0x8000000, LENGTH = 64M
 }
 
 SECTIONS {
@@ -1018,6 +1018,14 @@ SECTIONS {
         src/monster_gfx43.o(.rodata);
         data/monster_sbin.o(.rodata);
         src/monster_sbin_palet.o(.rodata);
+    } > ROM =0
+
+    .custom_portraits :
+    {
+        . = ALIGN(4);
+        __custom_portraits_start = .;
+        KEEP(*(.custom_portraits*))
+        __custom_portraits_end = .;
     } > ROM =0
 
     unk_96BD7AC_section :
