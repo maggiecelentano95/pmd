@@ -188,11 +188,11 @@ static s32 GetValidPartners(void)
         currentPartnerTypes[0] = GetPokemonType(CurrentPartnerID, 0);
         currentPartnerTypes[1] = GetPokemonType(CurrentPartnerID, 1);
 
-        if ((currentPartnerTypes[0] == TYPE_NONE || (currentPartnerTypes[0] != PlayerType[0] && currentPartnerTypes[0] != PlayerType[1]))
-        && ((currentPartnerTypes[1] == TYPE_NONE || (currentPartnerTypes[1] != PlayerType[0] && currentPartnerTypes[1] != PlayerType[1])))) {
+        //if ((currentPartnerTypes[0] == TYPE_NONE || (currentPartnerTypes[0] != PlayerType[0] && currentPartnerTypes[0] != PlayerType[1]))
+       // && ((currentPartnerTypes[1] == TYPE_NONE || (currentPartnerTypes[1] != PlayerType[0] && currentPartnerTypes[1] != PlayerType[1])))) {
             gUnknown_203B404->PartnerArray[ValidPartnerCounter] = CurrentPartnerID;
             ValidPartnerCounter++;
-        }
+        //}
     }
 
     return ValidPartnerCounter;
