@@ -56,20 +56,31 @@ void CreatePartnerSelectionMenu(s16 starterID)
 
 u16 HandlePartnerSelectionInput(void)
 {
-    s32 partnerID;
+    s32 currentPartnerID;
+    s32 newPartnerID;
 
-    partnerID = gUnknown_203B404->s18.m.input.menuIndex;
+    //put after MenuCursorUpdate
+    currentPartnerID = gUnknown_203B404->s18.m.input.menuIndex +
+        gUnknown_203B404->s18.m.input.currPage * gUnknown_203B404->s18.m.input.entriesPerPage;
+
+    newPartnerID = currentPartnerID;
+
     gUnknown_203B404->unk16 = 0;
 
     if (GetKeyPress(&gUnknown_203B404->s18.m.input) == INPUT_A_BUTTON) {
         PlayMenuSoundEffect(MENU_SFX_ACCEPT);
-        return gUnknown_203B404->PartnerArray[gUnknown_203B404->s18.m.input.menuIndex];
+        return gUnknown_203B404->PartnerArray[currentPartnerID];
     }
 
-    if (MenuCursorUpdate(&gUnknown_203B404->s18.m.input, TRUE))
+    if (MenuCursorUpdate(&gUnknown_203B404->s18.m.input, TRUE)){
         RedrawPartnerSelectionMenu();
+    }
 
-    if (partnerID != gUnknown_203B404->s18.m.input.menuIndex)
+    //see if cursor changed (scrolled up, down, went to next page)
+    newPartnerID = gUnknown_203B404->s18.m.input.menuIndex +
+            gUnknown_203B404->s18.m.input.currPage * gUnknown_203B404->s18.m.input.entriesPerPage;
+
+    if (currentPartnerID != newPartnerID)
         PersonalityTest_DisplayPartnerSprite();
 
     if (gUnknown_203B404->unk16 != 0) {
@@ -120,7 +131,8 @@ static void RedrawPartnerSelectionMenu(void)
 {
     u32 yCoord;
     const u8 *monName;
-    s32 monCounter;
+    s32 entryCounter;
+    s32 partnerIndex;
 
     UPDATE_MENU_WINDOW_HEIGHT(gUnknown_203B404->s18.m);
 
@@ -128,12 +140,14 @@ static void RedrawPartnerSelectionMenu(void)
     sub_80073B8(gUnknown_203B404->s18.m.menuWinId);
     PrintStringOnWindow(12, 0, gPartnerSelectionHeaderText, gUnknown_203B404->s18.m.menuWinId, 0);
 
-    monCounter = 0;
-    while (monCounter < gUnknown_203B404->s18.m.input.currPageEntries) {
-        yCoord = GetMenuEntryYCoord(&gUnknown_203B404->s18.m.input, monCounter);
-        monName = GetMonSpecies(gUnknown_203B404->PartnerArray[monCounter]);
+    entryCounter = 0;
+    while (entryCounter < gUnknown_203B404->s18.m.input.currPageEntries) {
+        yCoord = GetMenuEntryYCoord(&gUnknown_203B404->s18.m.input, entryCounter);
+        partnerIndex = entryCounter +
+            gUnknown_203B404->s18.m.input.currPage * gUnknown_203B404->s18.m.input.entriesPerPage;
+        monName = GetMonSpecies(gUnknown_203B404->PartnerArray[partnerIndex]);
         PrintStringOnWindow(8, yCoord, monName, gUnknown_203B404->s18.m.menuWinId, 0);
-        monCounter++;
+        entryCounter++;
     }
     sub_80073E0(gUnknown_203B404->s18.m.menuWinId);
     gUnknown_203B404->unk16 = 1;
@@ -142,12 +156,15 @@ static void RedrawPartnerSelectionMenu(void)
 static void PersonalityTest_DisplayPartnerSprite(void)
 {
     s32 partnerID;
+    s32 partnerIndex;
     struct OpenedFile *faceFile;
     const u8 *gfx;
     s32 emotionId;
     s32 i;
 
-    partnerID = gUnknown_203B404->PartnerArray[gUnknown_203B404->s18.m.input.menuIndex];
+    partnerIndex = gUnknown_203B404->s18.m.input.menuIndex +
+        gUnknown_203B404->s18.m.input.currPage * gUnknown_203B404->s18.m.input.entriesPerPage;
+    partnerID = gUnknown_203B404->PartnerArray[partnerIndex];
 
     CallPrepareTextbox_8008C54(1);
     sub_80073B8(1);
