@@ -428,6 +428,7 @@ extern const SiroArchive gAxMunchlax;
 extern const SiroArchive gAxDecoy;
 extern const SiroArchive gAxStatue;
 extern const SiroArchive gAxRayquazaCutscene;
+extern const SiroArchive gAxGrookey;
 extern const u8 gKaoBulbasaur[];
 extern const u8 gKaoCharmander[];
 extern const u8 gKaoCharizard[];

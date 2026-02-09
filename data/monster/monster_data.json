@@ -20124,5 +20124,49 @@
             276,
             411
         ]
+    },
+        {
+        "name": "MonsterNameGrookey",
+        "category": "MonsterCategorySeed",
+        "overworldPalette": 8,
+        "bodySize": 1,
+        "movementSpeed": 1,
+        "dialogueSprites": "0b0001111111111111",
+        "types": [
+            "TYPE_GRASS"
+        ],
+        "friendArea": "BEAU_PLAINS",
+        "abilities": [
+            "ABILITY_OVERGROW"
+        ],
+        "shadowSize": 1,
+        "regenSpeed": 100,
+        "canMove": true,
+        "chanceAsleep": 8,
+        "baseHP": 20,
+        "expYield": 18,
+        "baseAtkSpAtk": [
+            2,
+            2
+        ],
+        "baseDefSpDef": [
+            1,
+            0
+        ],
+        "weight": 153,
+        "size": 27,
+        "unk30": 10,
+        "unk31": 10,
+        "unk32": 24,
+        "canThrowItems": true,
+        "dexInternal": [
+            1,
+            1
+        ],
+        "recruitRate": 125,
+        "alphabetParent": [
+            32,
+            1
+        ]
     }
 ]

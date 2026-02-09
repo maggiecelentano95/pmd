@@ -1,3 +1,8 @@
+.global MonsterNameGrookey
+MonsterNameGrookey:
+.string "Grookey\0"
+.align 2,0
+
 .global MonsterNameStatue
 MonsterNameStatue:
 .string "Statue\0"

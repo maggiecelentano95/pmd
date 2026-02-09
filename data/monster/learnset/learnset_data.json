@@ -29235,5 +29235,117 @@
             "MOVE_WIDE_SLASH",
             "MOVE_VACUUM_CUT"
         ]
+    },
+        {
+        "pokemon": "MONSTER_MUNCHLAX",
+        "levelUpMoves": [
+            {
+                "move": "MOVE_HIDDEN_POWER",
+                "level": 1
+            }
+        ],
+        "HMTMMoves": []
+    },
+        {
+        "pokemon": "MONSTER_DECOY",
+        "levelUpMoves": [
+            {
+                "move": "MOVE_HIDDEN_POWER",
+                "level": 1
+            }
+        ],
+        "HMTMMoves": []
+    },
+        {
+        "pokemon": "MONSTER_STATUE",
+        "levelUpMoves": [
+            {
+                "move": "MOVE_HIDDEN_POWER",
+                "level": 1
+            }
+        ],
+        "HMTMMoves": []
+    },
+            {
+        "pokemon": "MONSTER_RAYQUAZA_CUTSCENE",
+        "levelUpMoves": [
+            {
+                "move": "MOVE_HIDDEN_POWER",
+                "level": 1
+            }
+        ],
+        "HMTMMoves": []
+    },
+       {
+        "pokemon": "Grookey",
+        "levelUpMoves": [
+            {
+                "move": "MOVE_TACKLE",
+                "level": 1
+            },
+            {
+                "move": "MOVE_RAZOR_LEAF",
+                "level": 4
+            },
+            {
+                "move": "MOVE_LEECH_SEED",
+                "level": 7
+            },
+            {
+                "move": "MOVE_VINE_WHIP",
+                "level": 10
+            },
+            {
+                "move": "MOVE_POISONPOWDER",
+                "level": 15
+            },
+            {
+                "move": "MOVE_SLEEP_POWDER",
+                "level": 15
+            },
+            {
+                "move": "MOVE_RAZOR_LEAF",
+                "level": 20
+            },
+            {
+                "move": "MOVE_SWEET_SCENT",
+                "level": 25
+            },
+            {
+                "move": "MOVE_GROWTH",
+                "level": 32
+            },
+            {
+                "move": "MOVE_SYNTHESIS",
+                "level": 39
+            },
+            {
+                "move": "MOVE_SOLARBEAM",
+                "level": 46
+            }
+        ],
+        "HMTMMoves": [
+            "MOVE_CUT",
+            "MOVE_ROCK_SMASH",
+            "MOVE_RETURN",
+            "MOVE_STRENGTH",
+            "MOVE_DOUBLE_TEAM",
+            "MOVE_FACADE",
+            "MOVE_GIGA_DRAIN",
+            "MOVE_SOLARBEAM",
+            "MOVE_BULLET_SEED",
+            "MOVE_TOXIC",
+            "MOVE_SUNNY_DAY",
+            "MOVE_REST",
+            "MOVE_SECRET_POWER",
+            "MOVE_FLASH",
+            "MOVE_SLUDGE_BOMB",
+            "MOVE_PROTECT",
+            "MOVE_HIDDEN_POWER",
+            "MOVE_ATTRACT",
+            "MOVE_FRUSTRATION",
+            "MOVE_WIDE_SLASH",
+            "MOVE_VACUUM_CUT"
+        ]
     }
 ]
