@@ -7,7 +7,7 @@ MEMORY
 {
     EWRAM (rwx) : ORIGIN = 0x2000000, LENGTH = 256K
     IWRAM (rwx) : ORIGIN = 0x3000000, LENGTH = 32K
-    ROM    (rx) : ORIGIN = 0x8000000, LENGTH = 64M
+    ROM    (rx) : ORIGIN = 0x8000000, LENGTH = 32M
 }
 
 SECTIONS {
@@ -943,7 +943,7 @@ SECTIONS {
         gUnknown_3004000 = .; /* Used by sub_80001E0 */
     } > IWRAM
 
-    unk_data 0x8300000 :
+    unk_data :
     ALIGN(4)
     {
         data/unk_data.o(.rodata);
@@ -955,20 +955,20 @@ SECTIONS {
         data/system_sbin.o(.rodata);
     } > ROM =0
 
-    titlemenu_sbin_section 0x8380000 :
+    titlemenu_sbin_section :
     ALIGN(4)
     {
         src/titlemenu_sbin.o(.rodata);
         data/titlemenu_sbin.o(.rodata);
     } > ROM =0
 
-    dungeon_sbin_section 0x83B0000 :
+    dungeon_sbin_section :
     ALIGN(4)
     {
         data/dungeon_sbin.o(.rodata);
     } > ROM =0
 
-    monster_sbin_section 0x8510000 :
+    monster_sbin_section :
     ALIGN(4)
     {
         src/monster_sbin.o(.rodata);
