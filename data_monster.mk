@@ -37,3 +37,18 @@ ifeq ($(shell uname -s), Darwin)
 else
 	sed -i 's/global/4byte/g' $(LEARNSET_PTRS)
 endif
+
+LVMP_DIR = $(MONSTER_DIR)/lvmp
+LVMP_JSON_SRC ?= $(LVMP_DIR)/lvmp.json
+LVMP_JSON = $(LVMP_DIR)/lvmp.json
+LVMAP_DATA_DIR = $(MONSTER_DIR)/lvmap_data
+LVMAP_DATA_INC = $(MONSTER_DIR)/lvmap_data.inc
+
+data_lvmp: $(LVMAP_DATA_INC);
+
+$(LVMP_JSON):
+	@mkdir -p $(LVMP_DIR)
+	@if [ "$(LVMP_JSON_SRC)" != "$(LVMP_JSON)" ]; then cp $(LVMP_JSON_SRC) $(LVMP_JSON); fi
+
+$(LVMAP_DATA_INC): $(LVMP_JSON) tools/scripts/lvmp_build.py
+	python3 tools/scripts/lvmp_build.py --json $(LVMP_JSON) --out-inc $(LVMAP_DATA_INC) --out-dir $(LVMAP_DATA_DIR)

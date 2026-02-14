@@ -23,11 +23,35 @@ static EWRAM_DATA MonsterDataEntry *sMonsterParameters = {NULL}; // B=02135090
 static EWRAM_DATA OpenedFile *sMonsterParametersFile = {NULL};
 static EWRAM_DATA SpriteOAM sShadowSprites[3] = {0};
 static EWRAM_DATA RecruitedMon sRecruitedPokemon = {0}; // B=02135560
-static EWRAM_DATA s16 sLevelCurrentPokeId = {0};
 UNUSED static EWRAM_DATA u16 unused_data[3] = {0};
-static EWRAM_DATA LevelData sLevelCurrentData[0x64] = {0}; // TODO: Add MAX_LEVEL define
+
 
 EWRAM_INIT RecruitedMon *gRecruitedPokemonRef = {NULL}; // B=020EAF94
+
+#define LVMAP_MAGIC 0x504D564C // "LVMP" little-endian
+#define LVMAP_MAX_CHUNK 8184
+
+typedef struct LvmapChunkEntry
+{
+    u32 offset;
+    u32 size;
+    u32 at4pSize;
+    const u8 *data;
+} LvmapChunkEntry;
+
+typedef struct LvmapHeader
+{
+    u32 magic;
+    u32 entryCount;
+    u32 levelsPerEntry;
+    u32 recordSize;
+    u32 totalSize;
+    u32 chunkCount;
+} LvmapHeader;
+
+static EWRAM_DATA const LvmapHeader *sLvmapHeader = {NULL};
+static EWRAM_DATA s32 sLvmapCachedChunk = {-1};
+static EWRAM_DATA u8 sLvmapChunkBuf[LVMAP_MAX_CHUNK] = {0};
 
 struct unkStruct_8107654
 {
@@ -41,7 +65,8 @@ void LoadMonsterParameters(void)
     gRecruitedPokemonRef = &sRecruitedPokemon;
     sMonsterParametersFile = OpenFileAndGetFileDataPtr("monspara", &gSystemFileArchive);
     sMonsterParameters = (MonsterDataEntry *)sMonsterParametersFile->data;
-    sLevelCurrentPokeId = 0;
+    sLvmapHeader = NULL;
+    sLvmapCachedChunk = -1;
     // More in blue
 }
 
@@ -1020,26 +1045,51 @@ void sub_808DFDC(s32 a1, DungeonMon* a2)
     }
 }
 
+static const u8 *GetLvmapRecordPtr(s32 id, s32 level)
+{
+    OpenedFile *file;
+    u32 byteOffset;
+    u32 i;
+
+    if (!sLvmapHeader) {
+        file = OpenFileAndGetFileDataPtr("lvmp", &gSystemFileArchive);
+        if (!file) return NULL;
+        sLvmapHeader = (const LvmapHeader *)file->data;
+        if (sLvmapHeader->magic != LVMAP_MAGIC) return NULL;
+    }
+
+    if (id < 1 || id > (s32)sLvmapHeader->entryCount) return NULL;
+    if (level < 1) level = 1;
+    if (level > (s32)sLvmapHeader->levelsPerEntry) level = sLvmapHeader->levelsPerEntry;
+
+    byteOffset = (u32)((id - 1) * sLvmapHeader->levelsPerEntry + (level - 1))
+               * sLvmapHeader->recordSize;
+
+    {
+        const LvmapChunkEntry *chunks = (const LvmapChunkEntry *)((const u8 *)sLvmapHeader + sizeof(LvmapHeader));
+        for (i = 0; i < sLvmapHeader->chunkCount; i++) {
+            const LvmapChunkEntry *c = &chunks[i];
+        if (byteOffset >= c->offset && byteOffset < c->offset + c->size) {
+            if ((s32)i != sLvmapCachedChunk) {
+                DecompressAT(sLvmapChunkBuf, c->size, c->data);
+                sLvmapCachedChunk = (s32)i;
+            }
+            return sLvmapChunkBuf + (byteOffset - c->offset);
+        }
+    }
+    }
+
+    return NULL;
+}
+
 void GetLvlUpEntry(LevelData* a1, s32 _id, s32 level)
 {
-  u8 buffer[12];
-  s32 id = SpeciesId(_id);
-
-  if (sLevelCurrentPokeId != id)
-  {
-    OpenedFile *file;
-
-    sLevelCurrentPokeId = id;
-    sprintf(buffer, "lvmp%03d", id);
-    file = OpenFileAndGetFileDataPtr(buffer, &gSystemFileArchive);
-    DecompressATFile(sLevelCurrentData, 0, file);
-    CloseFile(file);
-  }
-  level -= 1;
-  if ( level < 0 )
-    level = 0;
-
-   *a1 = sLevelCurrentData[level];
+    s32 id = SpeciesId(_id);
+    const u8 *ptr = GetLvmapRecordPtr(id, level);
+    if (ptr)
+        *a1 = *(const LevelData *)ptr;
+    else
+        *a1 = (LevelData){0};
 }
 
 const u8* DecompressMoveID(const u8* src, u16* moveID)
