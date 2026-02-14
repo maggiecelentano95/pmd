@@ -43,6 +43,48 @@ static bool8 LevelUp(Entity *, Entity *, u8, u8);
 static void sub_807218C(Entity *pokemon);
 static bool8 sub_80725A4(Entity *pokemon, Entity *target);
 static void sub_8072778(Entity *pokemon, Entity *target, u8 param_2, u8 param_3);
+
+/*
+// Debug markers to isolate level-up message corruption.
+static const u8 sDbgLvlupMarkerEntry[] = "DBG:LVUP:ENTRY";
+static const u8 sDbgLvlupMarkerBeforeLearnMsg[] = "DBG:LVUP:BEFORE_LEARN_MSG";
+static const u8 sDbgLvlupMarkerAfterLearnMsg[] = "DBG:LVUP:AFTER_LEARN_MSG";
+static const u8 sDbgLvlupMarkerBeforeForgetMsg[] = "DBG:LVUP:BEFORE_FORGET_MSG";
+static const u8 sDbgLvlupMarkerAfterForgetMsg[] = "DBG:LVUP:AFTER_FORGET_MSG";
+static const u8 s1[] = "1";
+static const u8 s2[] = "2";
+static const u8 s3[] = "3";
+static const u8 s4[] = "4";
+static const u8 s5[] = "5";
+
+// mGBA debug log helper
+#define MGBA_REG_DEBUG_ENABLE (*(vu16*)0x4FFF780)
+#define MGBA_REG_DEBUG_FLAGS  (*(vu16*)0x4FFF700)
+#define MGBA_REG_DEBUG_STRING ((vu8*)0x4FFF600)
+
+enum {
+    MGBA_LOG_FATAL = 0,
+    MGBA_LOG_ERROR = 1,
+    MGBA_LOG_WARN  = 2,
+    MGBA_LOG_INFO  = 3,
+    MGBA_LOG_DEBUG = 4
+};
+
+static void MgbaLog(int level, const char* s)
+{
+    int i = 0;
+    if (MGBA_REG_DEBUG_ENABLE != 0x1DEA)
+        return; // not running on mGBA with logging interface
+
+    MGBA_REG_DEBUG_ENABLE = 0xC0DE;
+    while (s[i] && i < 255) {
+        MGBA_REG_DEBUG_STRING[i] = (vu8)s[i];
+        i++;
+    }
+    MGBA_REG_DEBUG_STRING[i] = 0;
+    MGBA_REG_DEBUG_FLAGS = (vu16)(0x100 | (level & 0x7));
+}
+*/
 static void sub_8072B24(Entity *entity, Move *moves);
 static void sub_8072B78(Entity *pokemon, Entity *target, s16 id);
 
