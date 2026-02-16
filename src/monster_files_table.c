@@ -502,5 +502,6 @@ const File gMonsterFiles[MONSTER_FILES_COUNT] = {
     [MONSTER_GROOKEY + 70] = { "kao414", gKaoDeoxysNormal,},
     [MONSTER_GROOKEY + 71] = { "kao420", gKaoMunchlax,},
     [MONSTER_GROOKEY + 72] = { "kao423", gKaoRayquazaCutscene,},
-    [MONSTER_GROOKEY + 73] = { "palet", gAxMonsPalette,},
+    [MONSTER_GROOKEY + 73] = { "kao424", gKaoGrookey,},
+    [MONSTER_GROOKEY + 74] = { "palet", gAxMonsPalette,},
 };

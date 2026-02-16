@@ -502,6 +502,7 @@ extern const u8 gKaoJirachi[];
 extern const u8 gKaoDeoxysNormal[];
 extern const u8 gKaoMunchlax[];
 extern const u8 gKaoRayquazaCutscene[];
+extern const u8 gKaoGrookey[];
 extern const SiroArchive gAxMonsPalette[];
 
 #endif
