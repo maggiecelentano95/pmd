@@ -7,16 +7,4 @@ sEnteiNormalGfx:
 .string "AT4PX"
 .incbin "baserom.gba", 0x16A8235, 0x2B7
 sPortraitsEntei:
-kao_portrait sEnteiNormalPal_Custom, sEnteiNormalGfx_Custom
-kao_portrait sEnteiHappyPal_Custom, sEnteiHappyGfx_Custom
-kao_portrait sEnteiAngryPal_Custom, sEnteiAngryGfx_Custom
-kao_portrait sEnteiPainedPal_Custom, sEnteiPainedGfx_Custom
-kao_portrait sEnteiWorriedPal_Custom, sEnteiWorriedGfx_Custom
-kao_portrait sEnteiSadPal_Custom, sEnteiSadGfx_Custom
-kao_portrait sEnteiCryingPal_Custom, sEnteiCryingGfx_Custom
-kao_portrait sEnteiShoutingPal_Custom, sEnteiShoutingGfx_Custom
-kao_portrait sEnteiTearyEyePal_Custom, sEnteiTearyEyeGfx_Custom
-kao_portrait sEnteiDeterminedPal_Custom, sEnteiDeterminedGfx_Custom
-kao_portrait sEnteiJoyousPal_Custom, sEnteiJoyousGfx_Custom
-kao_portrait sEnteiInspiredPal_Custom, sEnteiInspiredGfx_Custom
-kao_portrait sEnteiSurprisedPal_Custom, sEnteiSurprisedGfx_Custom
+kao_portrait sEnteiNormalPal, sEnteiNormalGfx
