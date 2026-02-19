@@ -84,5 +84,6 @@ const struct ScriptVarInfo gScriptVarInfo[SCRIPT_VARS_COUNT] = {
     [EVENT_M01E10A_3N] = {.type = SCRIPT_VAR_TYPE_BIT, 6, 226, 0, 8, 0, "EVENT_M01E10A_3N"},
     [EVENT_M01E10A_5N] = {.type = SCRIPT_VAR_TYPE_BIT, 6, 227, 0, 8, 0, "EVENT_M01E10A_5N"},
     [EVENT_M02E01A_2N] = {.type = SCRIPT_VAR_TYPE_BIT, 6, 228, 0, 8, 0, "EVENT_M02E01A_2N"},
-    [SUM] = {.type = SCRIPT_VAR_TYPE_0, 0, 229, 0, 0, 0, "SUM"},
+    [RELATIONSHIP_STATUS] = {.type = SCRIPT_VAR_TYPE_U8, 5, 229, 0, 1, 0, "RELATIONSHIP_STATUS"},
+    [SUM] = {.type = SCRIPT_VAR_TYPE_0, 0, 230, 0, 0, 0, "SUM"},
 };

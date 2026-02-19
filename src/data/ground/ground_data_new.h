@@ -92,7 +92,7 @@ static const struct ScriptCommand group1_sector0_lives0_dlg[] =
     FANFARE_PLAY2(468),
     ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_EAST),
     WAIT(50),
-    MSG_VAR(2, PARTNER_TALK_KIND, 1),
+    MSG_VAR(2, RELATIONSHIP_LEVEL, 1),
     VARIANT_DEFAULT(_(" You were passed out here,\nhardly breathing!")),
     VARIANT_DEFAULT(_(" I'm glad to see you're not dead")),
     UPDATE_VARINT(CALC_SET, MAP_LOCAL, 2), //run LABEL 2 in partner

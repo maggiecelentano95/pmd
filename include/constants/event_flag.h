@@ -417,6 +417,7 @@ enum ScriptVarId
     /* 0x4e */ EVENT_M01E10A_3N,
     /* 0x4f */ EVENT_M01E10A_5N,
     /* 0x50 */ EVENT_M02E01A_2N,
+    RELATIONSHIP_STATUS, 
     /* 0x51 */ SUM,
     /* 0x52 */ SCRIPT_VARS_COUNT,
     /* 0x400 */ LOCAL0 = 0x400,
