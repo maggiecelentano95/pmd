@@ -585,4 +585,7 @@
 #define DEBUGINFO_O(originalLineNum)    { CMD_BYTE_F6, 0, originalLineNum, 0, 0, FAKE_FILENAME }
 #endif
 
+//get relationship of partner
+#define GET_RELATIONSHIP                { CMD_BYTE_F7, 0, 0, 0, 0, NULL }
+
 //#endif // GUARD_DATA_SCRIPT_H

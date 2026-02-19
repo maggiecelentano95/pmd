@@ -250,6 +250,7 @@ enum ScriptOpID
     CMD_BYTE_F4,
     CMD_BYTE_F5,
     CMD_BYTE_F6,
+    CMD_BYTE_F7,
 };
 
 enum SpecialTextKind

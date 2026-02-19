@@ -633,6 +633,7 @@ void WritePoke1Bits(DataSerializer* a1, Pokemon* pokemon)
     WriteHeldItemBits(a1, &pokemon->heldItem);
     WritePoke1MovesBits(a1, pokemon->moves);
     WriteBits(a1, pokemon->name, POKEMON_NAME_LENGTH * 8);
+    WriteBits(a1, &pokemon->relationshipStatus, 8);
 }
 
 // arm9.bin::0205C890
@@ -663,6 +664,7 @@ void ReadPoke1Bits(DataSerializer* a1, Pokemon* pokemon)
     ReadHeldItemBits(a1, &pokemon->heldItem);
     ReadPoke1MovesBits(a1, pokemon->moves);
     ReadBits(a1, pokemon->name, POKEMON_NAME_LENGTH * 8);
+    ReadBits(a1, &pokemon->relationshipStatus, 8);
 }
 
 // arm9.bin::0205C688
@@ -704,6 +706,7 @@ s32 SavePoke2s(u8* buffer, s32 size)
         WriteBits(&backup, &pokemon2->tacticIndex, 4);
         WriteHiddenPowerBits(&backup, &pokemon2->hiddenPower);
         WriteBits(&backup, &pokemon2->name, POKEMON_NAME_LENGTH * 8);
+        WriteBits(&backup, &pokemon2->relationshipStatus, 8);
     }
 
     FinishBitSerializer(&backup);
@@ -755,6 +758,7 @@ s32 RestorePoke2s(u8* a1, s32 size)
         ReadBits(&backup, &pokemon2->tacticIndex, 4);
         ReadHiddenPowerBits(&backup, &pokemon2->hiddenPower);
         ReadBits(&backup, &pokemon2->name, POKEMON_NAME_LENGTH * 8);
+        ReadBits(&backup, &pokemon2->relationshipStatus, 8);
     }
 
     FinishBitSerializer(&backup);

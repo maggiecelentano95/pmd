@@ -38,6 +38,7 @@ typedef struct Pokemon
     /* R=0x28 | B=0x1C */ BulkItem heldItem;
     /* R=0x2C | B=0x1E */ Move moves[MAX_MON_MOVES];
     /* R=0x4C | B=0x36 */ u8 name[POKEMON_NAME_LENGTH];
+    u8 relationshipStatus;
 } Pokemon;
 
 // size: 0x4
@@ -73,6 +74,7 @@ typedef struct DungeonMon
     /* R=0x50 | B=0x45 */ u8 tacticIndex;
     /* R=0x54 | B=0x46 */ HiddenPower hiddenPower;
     /* R=0x58 | B=0x4A */ u8 name[POKEMON_NAME_LENGTH]; // name (other offset)
+                            u8 relationshipStatus;
 } DungeonMon;
 
 // size: R=0x90E8 | B=0x6990

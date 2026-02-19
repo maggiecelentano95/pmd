@@ -3273,6 +3273,21 @@ static s32 ExecuteScriptCommand(Action *action)
                 // Debug, not in release ROM
                 break;
             }
+            case CMD_BYTE_F7: 
+            { 
+                //Get RELATIONSHIP_STATUS with partner
+                Pokemon *partner = GetPartnerMon2();
+                if (partner != NULL) 
+                {
+                    u8 relationshipStatus = partner->relationshipStatus;
+                    SetScriptVarValue(NULL, RELATIONSHIP_STATUS, relationshipStatus);
+                }
+                else
+                {
+                    SetScriptVarValue(NULL, RELATIONSHIP_STATUS, 10);
+                }
+                break;
+            }
         }
     }
 }

@@ -356,6 +356,7 @@ u32 sub_80954CC(u8 *buffer, u32 size)
     ReadHeldItemBits(&backup, &mon->heldItem);
     ReadPoke1MovesBits(&backup, mon->moves);
     ReadBits(&backup, mon->name, 10 * 8);
+    ReadBits(&backup, &mon->relationshipStatus, 8);
 
     ReadBits(&backup, &gUnknown_203B48C->unk0, 32);
     for (i = 0; i < 32; i++) {
@@ -401,6 +402,7 @@ u32 sub_8095624(u8 *buffer, u32 b)
     WriteHeldItemBits(&backup, &mon->heldItem);
     WritePoke1MovesBits(&backup, mon->moves);
     WriteBits(&backup, mon->name, 10 * 8);
+    WriteBits(&backup, &mon->relationshipStatus, 8);
 
     WriteBits(&backup, &gUnknown_203B48C->unk0, 32);
 

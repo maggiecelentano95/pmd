@@ -139,6 +139,9 @@ void CreateLeaderPartnerData(s16 _species, bool32 _isLeader, u8* name)
              pokemon.name[j] = name[j];
          }
      }
+
+     pokemon.relationshipStatus = 10;
+
      friendArea = sMonsterParameters[species].friendArea;
      for (i = 0; i < NUM_MONSTERS; i++) {
          if (!PokemonExists(&gRecruitedPokemonRef->pokemon[i])) {
@@ -203,6 +206,8 @@ void CreateLevel1Pokemon(Pokemon *pokemon, s16 _species, u8* name, u32 _itemID, 
             pokemon->name[j] = name[j];
         }
     }
+
+    pokemon->relationshipStatus = 10;
 }
 
 void sub_808D0D8(Pokemon *pokemon)
@@ -254,6 +259,8 @@ void ConvertStoryMonToPokemon(Pokemon *dst, const struct StoryMonData *src)
     for (i = 0; i < POKEMON_NAME_LENGTH; i++) {
         dst->name[i] = src->name[i];
     }
+
+    dst->relationshipStatus = 10;
 }
 
 Pokemon *TryAddPokemonToRecruited(Pokemon *pokemon)
@@ -983,6 +990,8 @@ void PokemonToDungeonMon(DungeonMon *dst, Pokemon *src, s32 recruitedPokemonId)
         dst->name[i] = src->name[i];
     }
 
+    dst->relationshipStatus = src->relationshipStatus;
+
     if (BulkItemExists(&src->heldItem)) {
         BulkItemToItem(&dst->itemSlot, &src->heldItem);
     }
@@ -1024,6 +1033,8 @@ void DungeonMonToPokemon(Pokemon* dst, DungeonMon* src)
     for (i = 0; i < POKEMON_NAME_LENGTH; i++) {
         dst->name[i] = src->name[i];
     }
+
+    dst->relationshipStatus = src->relationshipStatus;
 
     if (src->itemSlot.flags & ITEM_FLAG_EXISTS) {
         ItemToBulkItem(&dst->heldItem, &src->itemSlot);

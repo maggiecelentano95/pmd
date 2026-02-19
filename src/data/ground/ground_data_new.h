@@ -71,7 +71,6 @@ static const struct ScriptCommand group1_sector0_lives0_dlg[] =
     PORTRAIT(PLACEMENT_RIGHT_BOTTOM_FLIP, 0x0001, 0x00000000),
     CALL_SCRIPT(WAKEUP_FUNC),
     UPDATE_VARINT(CALC_SET, MAP_LOCAL, 1), //run LABEL 1 in partner
-    MSG_QUIET(0, _("(Testing?)")),
     ALERT_CUE(6), //jump to parter live
     AWAIT_CUE(5),
     //-------
@@ -92,9 +91,21 @@ static const struct ScriptCommand group1_sector0_lives0_dlg[] =
     FANFARE_PLAY2(468),
     ROTATE_TO(4, DIR_TRANS_SPINLEFT1, DIRECTION_EAST),
     WAIT(50),
-    MSG_VAR(2, RELATIONSHIP_LEVEL, 1),
+
+    GET_RELATIONSHIP,
+    MSG_VAR(2, RELATIONSHIP_STATUS, 1),
+    VARIANT(/* == */  10, _(" MWAHAHA")),
+    VARIANT(/* == */  3, _(" I'm {NAME_1}.\nHappy to meet you!")),
+    VARIANT_DEFAULT(_(" I'm {NAME_1}.\nGlad to meet you!")),
     VARIANT_DEFAULT(_(" You were passed out here,\nhardly breathing!")),
     VARIANT_DEFAULT(_(" I'm glad to see you're not dead")),
+
+    UPDATE_VARINT(CALC_ADD, RELATIONSHIP_STATUS, 2), 
+    MSG_VAR(2, RELATIONSHIP_STATUS, 1),
+    VARIANT(/* == */  11, _(" I like pancakes.")),
+    VARIANT(/* == */  12, _(" I like hoagies.")),
+    VARIANT_DEFAULT(_(" Ain't that neat?")),
+
     UPDATE_VARINT(CALC_SET, MAP_LOCAL, 2), //run LABEL 2 in partner
     ALERT_CUE(6),
     AWAIT_CUE(5),

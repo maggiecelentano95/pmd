@@ -208,6 +208,7 @@ void SetDungeonMonsFromTeam(void)
                 gRecruitedPokemonRef->dungeonTeam[index].IQSkills = lvl1Mon.IQSkills;
                 gRecruitedPokemonRef->dungeonTeam[index].tacticIndex = lvl1Mon.tacticIndex;
                 CopyAndResetMoves(&gRecruitedPokemonRef->dungeonTeam[index].moves, lvl1Mon.moves);
+                gRecruitedPokemonRef->dungeonTeam[index].relationshipStatus = lvl1Mon.relationshipStatus;
             }
             gRecruitedPokemonRef->dungeonTeam[index].unkC = index;
             if (++index == MAX_TEAM_MEMBERS)
