@@ -892,6 +892,7 @@ SECTIONS {
         src/ground_data_s04_station.o(.rodata);
         src/ground_data_s05_station.o(.rodata);
         src/ground_data_s06_station.o(.rodata);
+        src/gGroundScript_new.o(.rodata);
         src/m4a_tables.o(.rodata);
         src/agb_flash.o(.rodata);
         src/agb_flash_1m.o(.rodata);
