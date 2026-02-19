@@ -1609,4 +1609,11 @@ const GroundConversionStruct gGroundMapConversionTable[MAP_COUNT] = {
         .unk6 = -1,
         .text = _("__ground_amd_conversion_00240"),
     },
+    [MAP_NEW] = {
+        .unk0 = 1,
+        .groundPlaceId = GROUND_PLACE_TINY_WOODS,
+        .mapFileTableId = MAP_FILE_ID_TINY_WOODS_ENTRY,//map asset file to load
+        .unk6 = -1,
+        .text = _("__ground_amd_conversion_00171"),
+    },
 };
