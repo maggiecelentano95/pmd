@@ -4,4 +4,5 @@
 #define FAKE_FILENAME "../data/ground/gGroundScript_new.c"
 
 #include "globaldata.h"
+#include "constants/emotions.h"
 #include "data/ground/ground_data_new.h"
